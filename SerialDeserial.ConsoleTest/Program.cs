@@ -28,16 +28,15 @@ list.Count = 3;
 
 using (var stream = new FileStream("stram.dat", FileMode.Create, FileAccess.Write))
 {
-    list.Serialize(stream);
+    ListRandomSerializer.Serialize(stream, list);
 }
 
 using (var stream = new FileStream("stram.dat", FileMode.Open, FileAccess.Read))
 {
-    var list2 = new ListRandom();
-    list2.Deserialize(stream);
+    var list2 = ListRandomSerializer.Deserialize(stream);
     
     using (var s = new FileStream("stram_2.dat", FileMode.Create, FileAccess.Write))
     {
-        list.Serialize(s);
+        ListRandomSerializer.Serialize(s, list2);
     }
 }
